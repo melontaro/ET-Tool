@@ -17,6 +17,7 @@ public class FileNameInputDialog extends DialogWrapper {
     // CSType
     private JRadioButton radioComponent;
     private JRadioButton radioSystem;
+    private JRadioButton radioMessage;
     private ButtonGroup CSTypeButtonGroup;
 
     public FileNameInputDialog(Project project) {
@@ -56,13 +57,15 @@ public class FileNameInputDialog extends DialogWrapper {
         JPanel csTypePanel = new JPanel(new FlowLayout());
         radioComponent = new JRadioButton("Component");
         radioSystem = new JRadioButton("System");
+        radioMessage=new JRadioButton("Message");
         CSTypeButtonGroup = new ButtonGroup();
         CSTypeButtonGroup.add(radioComponent);
         CSTypeButtonGroup.add(radioSystem);
+        CSTypeButtonGroup.add(radioMessage);
 
         csTypePanel.add(radioComponent);
         csTypePanel.add(radioSystem);
-
+        csTypePanel.add(radioMessage);
         // 将文件名输入面板和单选按钮面板添加到主面板中
         panel.add(fileNamePanel, BorderLayout.NORTH);
         panel.add(selectLocationTypePanel, BorderLayout.CENTER);
@@ -108,6 +111,8 @@ public class FileNameInputDialog extends DialogWrapper {
             return CSType.Component;
         } else if (radioSystem.isSelected()) {
             return CSType.System;
+        } else if (radioMessage.isSelected()) {
+            return CSType.MessageHandler;
         } else {
             return null; // 如果没有选中任何按钮，则返回null
         }
