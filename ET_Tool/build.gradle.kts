@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "coocoogame.com"
-version = "1.2"
+version = "1.4"
 
 repositories {
   //    mavenCentral()
@@ -36,7 +36,7 @@ tasks {
 
   patchPluginXml {
     sinceBuild.set("231")
-    untilBuild.set("241.*")
+    untilBuild.set("243.*")
   }
 
   signPlugin {

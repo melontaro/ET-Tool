@@ -34,8 +34,8 @@ public class CreateCsFileAction extends AnAction {
             " [EntitySystem] \n   private static void Destroy(this ${fileName} self) \n { \n  } \n " +
             "} \n }";
     private static final String TEMPLATEComponent = "namespace ET${locationType} \n { " +
-            "\n   //[ChildOf(typeof(${fileName}))] \n" +
-            "\n   [ComponentOf(typeof(${fileName}))] \n" +
+            "\n   //[ChildOf(typeof(NeedReplace))] \n" +
+            "\n   [ComponentOf(typeof(NeedReplace))] \n" +
 
             "public  class ${fileName} : Entity, IAwake, IDestroy   { \n" +
             "\n \n" +
@@ -111,8 +111,10 @@ public class CreateCsFileAction extends AnAction {
 
         String fileContent = "";
         if (csType == CSType.System) {
+            String shorFileName=fileName.replace("System","");
             if (locationType == LocationType.Client || locationType == LocationType.Server) {
-                fileContent = TEMPLATESystem.replace("${fileName}", fileName).replace("${locationType}", "." + locationType.name());
+
+                fileContent = TEMPLATESystem.replace("${fileName}", shorFileName).replace("${locationType}", "." + locationType.name());
             } else {
                 fileContent = TEMPLATESystem.replace("${fileName}", fileName).replace("${locationType}", "");
             }
